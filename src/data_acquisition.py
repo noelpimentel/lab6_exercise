@@ -1,3 +1,7 @@
+import urllib2
+import os.path
+import nibabel as nib
+
 """
 This module contains functions for downloading and verifying data from
 the internet.
@@ -22,7 +26,8 @@ def download_data(url):
     ----
     Consider the urllib2 or wget python modules
     """
-    return NotImplemented
+    f = urllib2.urlopen(url)
+    return f.read()
 
 def save_data(data, output_filename):
     """
@@ -49,7 +54,12 @@ def save_data(data, output_filename):
     ----
     Check out the os module for determining whether a file exists already.
     """
-    return NotImplemented
+    if os.path.isfile(output_filename) == True:
+    	do
+        return 1
+    else:
+        np.savetxt(output_filename, data)
+        return 0
 
 def verify_data(data, known_checksum):
     """
@@ -73,7 +83,10 @@ def verify_data(data, known_checksum):
     ----
     Check out the hashlib module
     """
-    return NotImplemented
+    if hashlib.sha1(data).hexdigest() == known_checksum:
+	return True
+    else:
+	return False
         
 def load_parsed_data(fname):
     """
@@ -93,7 +106,9 @@ def load_parsed_data(fname):
     ----
     Use nibabel
     """
-    return NotImplemented
+    img = nib.load(fname)
+    data = img.get_data()    
+    return data
 
 def main(data.json):
     """
